@@ -2,7 +2,7 @@ import { AppBar, Box, IconButton, Slide, Toolbar, Typography, useScrollTrigger }
 import styled from "@emotion/styled";
 import _ from "lodash";
 import { ReactElement, useState } from "react";
-import { HomeSidebar } from "../landing/home-sidebar";
+import { HomeSidebar } from "./home-sidebar";
 import { PageButtons } from "./page-buttons";
 import { CustomMenuIcon } from "./menu-icon";
 
