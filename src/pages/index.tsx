@@ -1,11 +1,12 @@
-import { styled, Theme, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
+import styled from '@emotion/styled'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Box } from '@mui/material'
 import { HomeLayout } from '../components/landing/home-layout'
 import { ReactElement } from 'react'
 
-const HomePageText = styled('div')(({ theme }) => ({
+const HomePageText = styled(Box)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
   zIndex: 1,
   alignSelf: 'center',

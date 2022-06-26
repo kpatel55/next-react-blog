@@ -1,18 +1,26 @@
 import { Drawer, Button } from "@mui/material";
-import PropTypes, { InferProps } from "prop-types";
 import _ from "lodash";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export function HomeSidebar({
+type Props = {
+    open: boolean
+    onClose: () => void
+    pages: {
+        href: string
+        title: string
+    }[]
+}
+
+export const HomeSidebar = ({
     open,
     onClose,
     pages
-}: InferProps<typeof HomeSidebar.propTypes>) {
+}: Props) =>{
     const router = useRouter();
 
     const pagesList = _.map(pages, page =>(
-            <Link href={page!.href} key={page?.title}>
+            <Link href={page.href} key={page.title}>
                 <a style={{ textDecoration: 'none' }}>
                     <Button
                         sx={{
@@ -20,11 +28,11 @@ export function HomeSidebar({
                             py: '20px',
                             px: 0,
                             borderBottom: (
-                                page!.href ? (router.pathname === page!.href) : false
+                                page.href ? (router.pathname === page.href) : false
                             ) ? '1px solid #000': 'none',
                         }}
                     >
-                        {page?.title}
+                        {page.title}
                     </Button>
                 </a>
             </Link>
@@ -50,12 +58,3 @@ export function HomeSidebar({
         </Drawer>
     );
 };
-
-HomeSidebar.propTypes = {
-    open: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    pages: PropTypes.arrayOf(PropTypes.shape({
-        href: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired
-    })).isRequired
-}

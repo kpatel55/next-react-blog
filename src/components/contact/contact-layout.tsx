@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material"
 import { ReactNode } from "react"
-import { HomeNav } from "../landing/home-nav";
+import { HomeNav } from "../nav/home-nav";
 
 const ContactLayoutRoot = styled('div')(({ theme }) => ({
     display: 'flex',

@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 import { ReactNode } from "react";
-import { HomeNav } from "../landing/home-nav";
+import { HomeNav } from "../nav/home-nav";
 import { Box } from "@mui/material";
 
 const BlogLayoutRoot = styled('div')(({ theme }) => ({

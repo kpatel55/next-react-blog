@@ -2,7 +2,7 @@ import { Box } from "@mui/material"
 import { styled } from "@mui/material/styles";
 import { AppProps } from "next/app";
 import type { ReactNode } from 'react'
-import { HomeNav } from "./home-nav";
+import { HomeNav } from "../nav/home-nav";
 
 const HomeLayoutRoot = styled('div')(({ theme }) => ({
     display: 'flex',

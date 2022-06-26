@@ -1,9 +1,42 @@
-import { Box, Card, CardActionArea, CardContent, Grid, InputAdornment, styled, TextField, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardContent, Grid, InputAdornment, TextField, Typography } from "@mui/material";
+import styled from "@emotion/styled";
 import _ from 'lodash';
 import Image from 'next/image';
 import { articles } from '../../__mocks__/articles'  
 import { Search } from "@mui/icons-material";
 import { ChangeEvent, useState } from 'react';
+
+
+const ArticleCardAction = styled(CardActionArea)(() => ({
+    height: 460,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    '&:hover': {
+        '& .description': {
+            height: 100,
+            opacity: 1,
+            transition: 'all 1s',
+        },
+        '& .imageBox': {
+            opacity: '1 !important',
+            transform: `scale(1.1)`,
+            transition: 'all 1s',
+        }
+    }
+}));
+
+const BlogTextBox = styled(Box)(() => ({
+    zIndex: 1,
+    position: 'absolute',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    disaply: 'flex',
+    flexDirection: 'column',
+    width: '60%',
+    padding: '1rem',
+    backdropFilter: 'blur(0.125rem)'
+}));
 
 export const BlogArticles = () => {
     const [filteredArticles, setFilteredArticles] = useState(articles);
@@ -16,29 +49,9 @@ export const BlogArticles = () => {
     }
 
     const articlesList = _.map(filteredArticles, article => (
-            <Grid item xs={12} sm={6} md={4} key={article.title}>
+            <Grid item xs={12} sm={6} md={4} key={article.id}>
                 <Card sx={{ bgcolor: 'background.default' }}>
-                    <CardActionArea
-                        sx={{
-                            height: 460,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'flex-end',
-                            alignItems: 'flex-start',
-                            '&:hover': {
-                                '& .description': {
-                                    height: 100,
-                                    opacity: 1,
-                                    transition: 'all 1s',
-                                },
-                                '& .imageBox': {
-                                    opacity: '1 !important',
-                                    transform: `scale(1.1)`,
-                                    transition: 'all 1s',
-                                }
-                            }
-                        }}
-                    >
+                    <ArticleCardAction>
                         <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
                             <Image
                                 src={article.image}
@@ -49,18 +62,7 @@ export const BlogArticles = () => {
                                 style={{ zIndex: 0, opacity: .7, transition: 'all 1s' }}
                             />
                         </Box>
-                        <Box
-                            sx={{
-                                zIndex: 1,
-                                position: 'absolute',
-                                bgcolor: 'rgba(0, 0, 0, 0.5)',
-                                disaply: 'flex',
-                                flexDirection: 'column',
-                                width: '60%',
-                                p: '1rem',
-                                backdropFilter: 'blur(0.125rem)'
-                            }}
-                        >
+                        <BlogTextBox>
                             <Typography variant='h6' sx={{ color: 'primary.main', opacity: .7 }}>
                                 {article.subtitle}
                             </Typography>
@@ -79,8 +81,8 @@ export const BlogArticles = () => {
                             >
                                 {article.description}
                             </Typography>
-                        </Box>
-                    </CardActionArea>
+                        </BlogTextBox>
+                    </ArticleCardAction>
                 </Card>
             </Grid>
         )
@@ -88,7 +90,14 @@ export const BlogArticles = () => {
 
     return (
         <Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap'
+                }}
+            >
                 <Typography variant="h3" color='primary.contrastText'>
                     Latest
                 </Typography>
